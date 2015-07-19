@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 gem 'rails', '4.1.8'
 
 #DB
-gem 'sqlite3'
+gem 'mysql2'
 #Production gems
 gem 'capistrano-ext'
 gem 'capistrano'
@@ -16,7 +16,6 @@ group :development do
     gem 'capistrano-bundler', '~> 1.1.4'
     gem 'capistrano-rvm', '~> 0.1.2'
     gem 'spring'
-    gem 'debugger'
 end
 
 gem 'sass-rails',   '~> 5.0.1'
