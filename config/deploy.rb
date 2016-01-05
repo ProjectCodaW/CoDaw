@@ -1,7 +1,7 @@
 # config valid only for current version of Capistrano
 lock '3.4.0'
 
-set :application, 'codaw-api'
+set :application, 'CoDaw'
 set :repo_url, 'git@github.com:ProjectCodaW/codaw-api.git'
 
 # Default branch is :master
