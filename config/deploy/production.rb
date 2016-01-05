@@ -10,8 +10,9 @@ server 'ec2-52-8-0-173.us-west-1.compute.amazonaws.com', user: 'ec2-user',  role
 set :deploy_to, "/var/www/html/codaw.co"
 set :branch, 'master'
 set :rails_env, 'production'
-
-
+set :default_env, {
+    "PATH" => "/usr/local/bin/:$PATH"
+}
 # role-based syntax
 # ==================
 

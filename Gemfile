@@ -28,4 +28,5 @@ gem 'jquery-mousewheel-rails'
 gem "haml"
 gem 'turbolinks'
 gem 'foundation-rails'
+gem 'ember-cli-rails'
 
