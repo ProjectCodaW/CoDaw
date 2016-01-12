@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  track_id: 1
+  project_position: 0
+  sound_id: 1
+  ticks_from_start: 0
+  ticks_from_end: 0
+
+two:
+  track_id: 1
+  project_position: 0
+  sound_id: 1
+  ticks_from_start: 0
+  ticks_from_end: 0
