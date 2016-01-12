@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  track_id: 
+  projectPosition: 1
+  sound_id: 
+  start: 1
+  end: 1
+  playback_rate: 1.5
+
+two:
+  track_id: 
+  projectPosition: 1
+  sound_id: 
+  start: 1
+  end: 1
+  playback_rate: 1.5
