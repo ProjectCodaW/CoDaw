@@ -26,6 +26,8 @@ export default Ember.Component.extend({
 
     pause() {
       this.wavesurfer.pause();
+
+
     }
 
   }
