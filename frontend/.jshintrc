@@ -3,7 +3,7 @@
     "document",
     "window",
     "-Promise",
-    "Wavesurfer",
+    "Wavesurfer"
   ],
   "browser": true,
   "boss": true,
