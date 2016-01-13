@@ -13,7 +13,15 @@
 
 <div class="columns small-9 left strip-padding" data-sticky-container>
   <div class="sticky" data-sticky>
-      <div class="tracks">tracks</div>
+      <div class="tracks">
+          {{#each model}}
+            <ul>
+                <li>
+                    tracks
+                </li>
+            </ul>
+          {{/each}}          
+      </div>
       <div class="transport">transport</div>
   </div>
 </div>
