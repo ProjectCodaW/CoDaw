@@ -1,3 +1,5 @@
+@import 'ember-paper';
+
 .strip-padding {
     padding-left:0; 
     padding-right:0;
@@ -7,6 +9,7 @@
     height:100vh; 
     padding-left:0; 
     padding-right:0;
+    // box-shadow: 0 2px 4px -1px rgba(0,0,0,.14),0 4px 5px 0 rgba(0,0,0,.098),0 1px 10px 0 rgba(0,0,0,.084);
 }
 
 .transport {
@@ -21,8 +24,9 @@
 .tracks {
     background-color:#AAA;
     height:90vh; 
-    padding-left:0; 
-    padding-right:0;
+//    padding-left:0; 
+//    padding-right:0;
+    padding-top:.9375rem;
     top:0;
 }
 
@@ -31,4 +35,5 @@
     height:100vh; 
     padding-left:0; 
     padding-right:0;
+    // box-shadow: 0 -2px 4px -1px rgba(0,0,0,.14),0 -4px 5px 0 rgba(0,0,0,.098),0 -1px 10px 0 rgba(0,0,0,.084);
 }
