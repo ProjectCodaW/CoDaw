@@ -1,3 +1,6 @@
+$primary:'deep-purple';
+$accent:'teal';
+$warn:'orange';
 @import 'ember-paper';
 
 .strip-padding {
@@ -6,7 +9,7 @@
 }
 .to-master-panel {
     background-color:#333; 
-    height:100vh; 
+    height:calc(100vh - 64px); 
     padding-left:0; 
     padding-right:0;
     // box-shadow: 0 2px 4px -1px rgba(0,0,0,.14),0 4px 5px 0 rgba(0,0,0,.098),0 1px 10px 0 rgba(0,0,0,.084);
@@ -23,7 +26,7 @@
 
 .tracks {
     background-color:#AAA;
-    height:90vh; 
+    height:calc(90vh - 64px); 
 //    padding-left:0; 
 //    padding-right:0;
     padding-top:.9375rem;
@@ -31,9 +34,20 @@
 }
 
 .chat {
-    background-color:#BBB;
-    height:100vh; 
+    position: relative;
+    background-color:#BBB; 
+    height:calc(100vh - 64px);
     padding-left:0; 
     padding-right:0;
     // box-shadow: 0 -2px 4px -1px rgba(0,0,0,.14),0 -4px 5px 0 rgba(0,0,0,.098),0 -1px 10px 0 rgba(0,0,0,.084);
+}
+
+.startChat {
+  display: block;
+  position: absolute;
+  width:75%;
+  margin: 0 auto;
+  left:0;
+  right:0;
+  top:92%;
 }
