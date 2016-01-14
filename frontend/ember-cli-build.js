@@ -19,9 +19,17 @@ module.exports = function(defaults) {
   // modules that you would like to import into your application
   // please specify an object with the list of modules as keys
   // along with the exports of each module as its value.
-  
+
   app.import('bower_components/foundation/js/foundation.min.js');
   app.import('bower_components/foundation/css/foundation.min.css');
+  app.import('bower_components/wavesurfer.js/dist/wavesurfer.min.js');
+
+  //test audio
+  if(app.env === 'development') {
+    app.import('vendor/telephone.wav', {
+      destDir: 'assets'
+    });
+  }
 
   return app.toTree();
 };
