@@ -12,6 +12,10 @@
     "jquery": ">=1.11.3",
     "loader.js": "ember-cli/loader.js#3.4.0",
     "qunit": "~1.20.0",
-    "foundation": "~5.5.3"
+    "wavesurfer.js":null,
+    "qunit": "~1.20.0",
+    "foundation": "~5.5.3",
+    "hammerjs": "~2.0.6",
+    "matchMedia": "~0.3.0"
   }
 }
