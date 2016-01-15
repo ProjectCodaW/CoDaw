@@ -21,5 +21,12 @@ module.exports = function(defaults) {
   // along with the exports of each module as its value.
   app.import('bower_components/wavesurfer.js/dist/wavesurfer.min.js');
 
+  //test audio
+  if(app.env === 'development') {
+    app.import('vendor/telephone.wav', {
+      destDir: 'assets'
+    });
+  }
+
   return app.toTree();
 };
