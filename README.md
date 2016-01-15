@@ -45,68 +45,98 @@ You will need the following things properly installed on your computer.
 * `rails s`
 * Visit your app at [http://localhost:3000](http://localhost:3000).
 
-## The Git Workflow
+## The CoDaw Git Workflow
 
-### Starting Development
-First off, we'll need a new branch. Unless otherwise specified, we
-branch off of `origin/stage` (origin = ProjectCodaW). You can do
-this with:
-```shell
+Here are some tips on how we can efficiently create clean commits and focus the majority of our time on development:
+After successfully merging a PR, delete your old branch. This is because, we want to create commits on top of what stage already has. Your old branch is no longer of benefit unless it is identical to stage. If you are not sure, discard it!
+
+### Deleting local and remote branches
+to delete your old remote branch do:
+```
+git push origin --delete <-BranchName->
+```
+to delete your old local branch do:
+```
+git branch -D <-BranchName->
+```
+### Creating a new branch (from stage)
+now check out a new branch off the latest stage:
+```
 git fetch origin
-git checkout -b azimpradhan/my_feature origin/stage
+git branch -b <-your_github_handle->/<-new_feature_name-> origin/stage
 ```
-Now let's go ahead and push our new branch up to GitHub. For feature
-branches on the ProjectCodaW repository, we prefix branch names with a
-personal handle, so I would do:
-```shell
-git push origin azimpradhan/my_feature
+Go ahead and push this branch to make it exist remotely:
+```
+git push origin <-your_github_handle->/<-new_feature_name->
+```
+### Creating Clean Commits
+Now you are ready to develop. When developing try to create clean commits. For example, suppose I am creating database migrations and also modifying the title in an html page. when I type:
+```
+git status
+```
+the files that I have changed are:
+```
+M db/migrate/234232.rb
+M db/migrate/2383832.rb
+M frontend/index.html
 ```
 
-### Active Development
-Start writing code! While developing, be sure to commit early,
-and often! As a distributed VCS, branching is cheap/easy in Git,
-so branch away! Also, be sure to regularly push your changes to 
-Github; hard drives crash, laptops are stolen, things happen; don't
-lose your work! For now, don't worry about creating too many commits;
-We will be able to clean up our branch before submitting a PR.
-By committing often, it is easier to revert changes we make while
-iterating.
+If I am ready to commit these files, I will create separate commits by adding and comitting the db/migrate files separate from the index.html file.
 
-#### A Note on commits
-Don't forget to run `git diff` to ensure you're only committing intended
-changes.  If you _really_ want to commit everything from the diff, tell
-Git to add only files with updates _iff_ they are already under version
-control:
-```shell
-git add --update
+### Rebasing With Stage, and what that means
+After you have committed your files, it is important that you fetch the latest copy of the stage branch and rebase with stage. By rebasing with stage, you are bringing in all commits that have been merged into stage (good commits) and laying your commits on top of them:
+for example,
+let's say when you start development stage has commits:
 ```
-If you don't want to commit _everything_, you can selectively stage
-portions of files by:
-```shell
-git add --patch
+A, B, C
 ```
-I often use the `--patch` option to exclude `debug`/`print` lines from
-my commits.
-
-##### Warning
-Some people like to stage files to be committed with the wildcard syntax:
-```shell
-git add --all
+you create commits X, Y, so your branch looks like this:
 ```
-Please, don't do this. Because it adds _all_ files, unintended files are
-often committed erroneously (temp files, swap files, unrelated changes,
-etc.). You should always run either `git add --patch` or `git add
---update`.
+A, B, C, X, Y
+```
+However another teammate merged commits D and E into stage, so stage now looks like:
+```
+A, B, C, D, E
+```
+By rebasing with stage, you will make your branch go from looking like
+```
+A, B, C, X, Y 
+```
+to looking like 
+```
+A, B, C, D, E, X, Y
+```
+The idea is that your commits will appear as the last set of commits.
 
-#### Rebasing
-After all your changes are committed rebase your branch against the most
-current version of origin/stage. Rebasing against origin/stage means
-making sure that the changes in your branch will be layed out on top of
-the current version of origin/stage. To do this:
-`git fetch origin`
-`git rebase -i origin/stage`
-A text editor will appear with all the commits that are unique to your branch.
-Save and quit the text editor to perform the rebase
-If there are no conflicts the rebase was successful. If not, fix conflicts and run `git rebase --continue`
-after rebasing be sure to push your branch to origin
+to get the latest copy of stage, do 
+```
+git fetch origin
+```
+this updates updates the copies of all remote branches locally
 
+now rebase your branch with origin/stage
+```
+git rebase -i origin/stage
+```
+### Push your work to your remote branch
+Finally, you'll want to update your remote branch to include the changes after the rebase.
+```
+git push origin <-your_github_handle->/<-new_feature_name->
+```
+If no one had updated stage before your rebase, the above commit should have worked fine. However, if stage was changed, then github will not be happy with your push. Nothing to worry about. If the rebase with stage was successful you definitely want the commit history of your current local branch to be the one that is used. Therefore you can:
+```
+git push origin <-your_github_handle->/<-new_feature_name-> --force
+``` 
+This forces the contents of your local branch onto the remote branch. To refer to the example above your remote branch should now contain commits:
+```
+A, B, C, D, E, X, Y 
+```
+while stage contains commits:
+```
+A, B, C, D, E
+```
+### Creating your PR (base branch: stage)
+Now you can create your PR. Once your PR is reviewed by yourself and anyone you ask to review it, pressing the merge button, will append your commits (X, and Y), to the end of stage's commit history
+
+#### Warning
+DO NOT merge another person's branch into your branch. This makes it almost impossible to create a PR that can be merged. (each person should focus on being able to merge their own PR with stage)
