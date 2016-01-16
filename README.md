@@ -63,7 +63,7 @@ git branch -D <-BranchName->
 now check out a new branch off the latest stage:
 ```
 git fetch origin
-git branch -b <-your_github_handle->/<-new_feature_name-> origin/stage
+git checkout -b <-your_github_handle->/<-new_feature_name-> origin/stage
 ```
 Go ahead and push this branch to make it exist remotely:
 ```
