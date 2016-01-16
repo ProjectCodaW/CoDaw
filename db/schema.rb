@@ -11,6 +11,43 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 20160112013657) do
+
+  create_table "projects", force: true do |t|
+    t.float    "gain",       limit: 24
+    t.float    "bpm",        limit: 24
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "sound_objects", force: true do |t|
+    t.integer  "track_id"
+    t.integer  "projectPosition"
+    t.integer  "sound_id"
+    t.integer  "start"
+    t.integer  "end"
+    t.float    "playback_rate",   limit: 24
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "sound_objects", ["sound_id"], name: "index_sound_objects_on_sound_id", using: :btree
+  add_index "sound_objects", ["track_id"], name: "index_sound_objects_on_track_id", using: :btree
+
+  create_table "sounds", force: true do |t|
+    t.float    "bpm",        limit: 24
+    t.integer  "duration"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "tracks", force: true do |t|
+    t.integer  "project_id"
+    t.float    "gain",       limit: 24
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "tracks", ["project_id"], name: "index_tracks_on_project_id", using: :btree
 
 end
