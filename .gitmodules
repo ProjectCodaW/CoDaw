@@ -1,0 +1,3 @@
+[submodule "frontend/vendor/WAAX"]
+	path = frontend/vendor/WAAX
+	url = git@github.com:hoch/WAAX.git
