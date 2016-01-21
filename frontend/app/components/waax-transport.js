@@ -1,7 +1,8 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
-  queue: {},
+  times: [],
+  buffers: [],
   actions: {
     setBPM: function(bpm) {
       WX.Transport.setBPM(bpm);
@@ -16,7 +17,11 @@ export default Ember.Component.extend({
 
     },
 
-    addBuffer: function(id) {
+    addBuffer: function(tick, buffer) {
+
+    },
+
+    queueUpSounds: function() {
 
     }
   }
