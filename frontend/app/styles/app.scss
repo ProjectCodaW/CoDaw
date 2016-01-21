@@ -12,25 +12,22 @@ $warn:'orange';
     height:calc(100vh - 64px); 
     padding-left:0; 
     padding-right:0;
-    // box-shadow: 0 2px 4px -1px rgba(0,0,0,.14),0 4px 5px 0 rgba(0,0,0,.098),0 1px 10px 0 rgba(0,0,0,.084);
 }
 
 .transport {
-    background-color:#666; 
-    /*margin-top:90vh;*/
+    background-color:#111; 
+    color:#888;
     height:10vh; 
     padding-left:0; 
     padding-right:0;
-    bottom:0;
 }
 
 .tracks {
     background-color:#AAA;
     height:calc(90vh - 64px); 
-//    padding-left:0; 
-//    padding-right:0;
-    padding-top:.9375rem;
-    top:0;
+    padding: .9375rem;
+    z-index: -1;
+    overflow: auto;
 }
 
 .chat {
@@ -39,7 +36,6 @@ $warn:'orange';
     height:calc(100vh - 64px); 
     padding-left:0; 
     padding-right:0;
-    // box-shadow: 0 -2px 4px -1px rgba(0,0,0,.14),0 -4px 5px 0 rgba(0,0,0,.098),0 -1px 10px 0 rgba(0,0,0,.084);
 }
 
 .startChat {
