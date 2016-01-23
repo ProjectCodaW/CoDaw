@@ -16,10 +16,11 @@ export default Ember.Component.extend({
       waveColor: this.soundColor,
       progressColor: this.soundProgressColor
     });
-    this.wavesurfer.on('ready', function () {
-      this.wavesurfer.play();
-    });
+
     this.wavesurfer.load(this.fname);
+  },
+  click: function() {
+    this.wavesurfer.play();
   },
   actions: {
     init() {
