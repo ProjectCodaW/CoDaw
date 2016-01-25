@@ -10,7 +10,6 @@ export default Ember.Component.extend({
   soundProgressColor: 'purple',
   wavesurfer: null,
   didInsertElement: function() {
-    console.log('hit!');
     this.wavesurfer = WaveSurfer.create({
       container: '#'+this.id,
       waveColor: this.soundColor,

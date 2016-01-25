@@ -23,7 +23,11 @@ module.exports = function(defaults) {
   app.import('bower_components/foundation/js/foundation.min.js');
   app.import('bower_components/foundation/css/foundation.min.css');
   app.import('bower_components/wavesurfer.js/dist/wavesurfer.min.js');
-
+  app.import('vendor/WAAX/build/waax.min.js');
+  app.import('vendor/WAAX/build/mui/bower_components/webcomponentsjs/webcomponents.min.js');
+  app.import('vendor/WAAX/build/mui/mui.html',{
+    destDir: 'mui'
+  });
   //test audio
   if(app.env === 'development') {
     app.import('vendor/telephone.wav', {
