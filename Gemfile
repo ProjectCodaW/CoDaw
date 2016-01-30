@@ -30,3 +30,7 @@ gem 'foundation-rails', '~> 5.5.2.1'
 gem 'ember-cli-rails', '~> 0.7.0'
 gem 'sass-rails',   '~> 5.0.1'
 gem 'coffee-rails', '~> 4.1.0'
+
+# File Storage:
+gem 'paperclip', '~> 4.3'
+gem 'aws-sdk-v1', '~> 1.66.0'
