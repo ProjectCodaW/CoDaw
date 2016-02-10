@@ -1,0 +1,7 @@
+development:
+  access_key_id: AKIAJFXX4GKRZ2ADTA4Q
+  secret_access_key: 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
+
+production:
+  access_key_id: AKIAJMPG3AA3THH4NTCA
+  secret_access_key: <%= ENV['CODAW_PROD_S3_ACCESS_KEY'] %>

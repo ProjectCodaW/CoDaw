@@ -4,6 +4,9 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   #root 'home#index'
+
+  resources :sounds
+
   mount_ember_app :frontend, to: "/"
 
   # Example of regular route:
