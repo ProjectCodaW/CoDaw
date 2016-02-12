@@ -26,11 +26,9 @@ module.exports = function(defaults) {
   app.import('bower_components/lodash/dist/lodash.min.js');
 
   //test audio
-  if(app.env === 'development') {
-    app.import('vendor/telephone.wav', {
+  app.import('vendor/telephone.wav', {
       destDir: 'assets'
-    });
-  }
+  });
 
   return app.toTree();
 };
