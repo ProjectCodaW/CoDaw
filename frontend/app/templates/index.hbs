@@ -1,7 +1,8 @@
 {{#paper-toolbar}}
   <div class="md-toolbar-tools">
-    {{#paper-button}}Example button{{/paper-button}}
-    {{#paper-button}}Example button{{/paper-button}}
+      <div class="logo">
+          {{#link-to "index"}}CoDaw{{/link-to}}
+      </div>
   </div>
 {{/paper-toolbar}}
 
@@ -16,15 +17,34 @@
         <div class="sticky" data-sticky>
             <div class="tracks tracks-box">
                 {{#paper-content class="md-whiteframe-z1 list-demo"}}
-                    {{#paper-list}}
-                        {{#each model as |item index|}}
-                            {{#paper-item class="md-3-line"}}
-                                <div class="md-list-item-text">
-                                    {{sound-obj id=(track-id index) fname='http://localhost:3000/assets/telephone.wav'}}
+                    {{#paper-list class="strip-padding-tb"}}
+                        <div class="track-parent">
+                            {{#each model as |track|}}
+                                {{#paper-item class="md-3-line"}}
+                                    <div class="md-list-item-text">
+                                        {{#audio-track}}
+                                            {{#each track.sounds as |sound index|}}
+                                                {{sound-obj id=(sound-obj-id track.id index) class="sound-obj" fname='../assets/telephone.wav'}}
+                                                <div class="space">
+                                                </div>
+                                            {{else}}
+                                                <div class="empty-track"></div>
+                                            {{/each}}
+                                        {{/audio-track}}
+                                    </div>
+                                {{/paper-item}}
+                                <div class="mute-solo">
+                                    {{#paper-button icon-button=true raised=true class="ground"}}
+                                        {{paper-icon icon="volume-off"}}
+                                    {{/paper-button}}
+                                    {{#paper-button icon-button=true raised=true class="ground"}}
+                                        {{paper-icon icon="headset"}}
+                                    {{/paper-button}}
                                 </div>
-                            {{/paper-item}}
-                            {{paper-divider inset=true}}
-                        {{/each}}
+                                <div class="mute-solo-space">
+                                </div>
+                            {{/each}}
+                        </div>
                     {{/paper-list}}
                 {{/paper-content}}  
             </div>
