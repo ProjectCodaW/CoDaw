@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  gain: 1.0
+  bpm: 120
+  time_sig: "4/4"
+
+two:
+  gain: 1.0
+  bpm: 120
+  time_sig: "4/4"

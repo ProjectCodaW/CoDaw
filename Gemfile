@@ -1,32 +1,36 @@
 source 'https://rubygems.org'
-#Rails
+# Rails
 gem 'rails', '4.1.8'
 
-#DB
-gem 'mysql2'
-#Production gems
-gem 'capistrano-ext'
-gem 'capistrano'
-gem 'therubyracer'
-#Quiet Logs
-gem 'quiet_assets'
+# DB
+gem 'mysql2', '~> 0.3.18'
+
+# Production gems
+gem 'capistrano-ext', '~> 1.2.1'
+gem 'capistrano', '~> 3.4.0'
+gem 'therubyracer', '~> 0.12.2'
+
+# Quiet Logs
+gem 'quiet_assets', '~> 1.1.0'
 
 group :development do
     gem 'capistrano-rails', '~> 1.1.3'
     gem 'capistrano-bundler', '~> 1.1.4'
     gem 'capistrano-rvm', '~> 0.1.2'
-    gem 'spring'
+    gem 'spring', '~> 1.3.6'
 end
 
+# FrontEnd
+gem 'uglifier', '~> 2.7.1'
+gem 'jquery-rails', '~> 3.1.3'
+gem 'jquery-mousewheel-rails', '~> 0.0.9'
+gem 'haml', '~> 4.0.6'
+gem 'turbolinks', '~> 2.5.3'
+gem 'foundation-rails', '~> 5.5.2.1'
+gem 'ember-cli-rails', '~> 0.7.0'
 gem 'sass-rails',   '~> 5.0.1'
 gem 'coffee-rails', '~> 4.1.0'
 
-#FrontEnd
-gem 'uglifier', '>= 1.0.3'
-gem 'jquery-rails', '~> 3.1.3'
-gem 'jquery-mousewheel-rails'
-gem "haml"
-gem 'turbolinks'
-gem 'foundation-rails'
-gem 'ember-cli-rails'
-
+# File Storage:
+gem 'paperclip', '~> 4.3'
+gem 'aws-sdk-v1', '~> 1.66.0'
