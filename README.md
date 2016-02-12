@@ -18,13 +18,23 @@ You will need the following things properly installed on your computer.
 ## Installation
 
 ### Cloning the Code
+* `git clone --recursive git@github.com:ProjectCodaW/CoDaw.git` this repository
 
-* `git clone git@github.com:ProjectCodaW/CoDaw.git` this repository
-* change into the new directory
-* `bundle install`
-* change into the `frontend` directory
-* `npm install`
-* `bower install`
+* **Note:** If you have already cloned this repository without the `--recursive` option:
+            You must initialize and update the WAAX submodule as follows:
+
+```
+cd CoDaw/frontend/vendor/WAAX
+git submodule init
+git submodule update
+```
+
+* From the root directory run: `bundle install`
+* `cd` into the 'frontend' directory and run:
+```
+npm install
+bower install
+```
 
 ### Setting up your databases
 
