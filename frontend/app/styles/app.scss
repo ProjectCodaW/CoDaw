@@ -7,12 +7,6 @@ $warn:'orange';
     padding-left:0; 
     padding-right:0;
 }
-
-.strip-padding-tb {
-    padding-top:0; 
-    padding-bottom:0;
-}
-
 .to-master-panel {
     background-color:#333; 
     height:calc(100vh - 64px); 
@@ -26,21 +20,14 @@ $warn:'orange';
     height:10vh; 
     padding-left:0; 
     padding-right:0;
-    z-index:1;
-    position: fixed;
-    width:76.38888861%;
 }
 
 .tracks {
     background-color:#AAA;
     height:calc(90vh - 64px); 
     padding: .9375rem;
-    z-index: -2;
+    z-index: -1;
     overflow: auto;
-}
-
-.track-divider {
-    margin-top: 15px;
 }
 
 .chat {
@@ -59,49 +46,4 @@ $warn:'orange';
   left:0;
   right:0;
   top:92%;
-}
-
-.track {
-    width:auto;
-    white-space:nowrap;
-    font-size: 0;
-    padding:0;
-    margin:0;
-}
-
-.space {
-    background-color:#888;
-    width: 200px;
-    height: 128px;
-    display:inline-block;
-}
-
-.track-parent {
-}
-
-.sound-obj {
-    display: inline-block; 
-    width:100%;
-    *display: inline;
-    background-color: #FFF;
-}
-
-.empty-track {
-    height:128px;
-}
-
-.mute-solo {
-    position: fixed;
-}
-
-.mute-solo-space {
-    height:60px;
-    width:auto;
-    border-bottom-width: 1px;
-    border-bottom-style: solid;
-    border-bottom-color: rgba(0, 0, 0, 0.12)
-}
-
-.ground {
-    z-index:0;
 }
