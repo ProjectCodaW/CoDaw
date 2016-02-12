@@ -12,6 +12,8 @@ set :repo_url, 'git@github.com:ProjectCodaW/codaw-api.git'
 
 # Default value for :scm is :git
 set :scm, :git
+set :git_strategy, Capistrano::Git::SubmoduleStrategy
+set :git_keep_meta, true
 set :scm_passphrase, ""
 set :use_sudo, false
 

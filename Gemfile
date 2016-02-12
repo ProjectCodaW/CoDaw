@@ -17,6 +17,7 @@ group :development do
     gem 'capistrano-rails', '~> 1.1.3'
     gem 'capistrano-bundler', '~> 1.1.4'
     gem 'capistrano-rvm', '~> 0.1.2'
+    gem 'capistrano-git-submodule-strategy', '~> 0.1', :github => 'ekho/capistrano-git-submodule-strategy'
     gem 'spring', '~> 1.3.6'
 end
 
