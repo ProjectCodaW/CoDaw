@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160112013657) do
+ActiveRecord::Schema.define(version: 20160209224352) do
 
   create_table "projects", force: true do |t|
     t.float    "gain",       limit: 24
@@ -35,10 +35,14 @@ ActiveRecord::Schema.define(version: 20160112013657) do
   add_index "sound_objects", ["track_id"], name: "index_sound_objects_on_track_id", using: :btree
 
   create_table "sounds", force: true do |t|
-    t.float    "bpm",        limit: 24
-    t.integer  "duration",   limit: 8
+    t.float    "bpm",                    limit: 24
+    t.integer  "duration",               limit: 8
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "soundfile_file_name"
+    t.string   "soundfile_content_type"
+    t.integer  "soundfile_file_size"
+    t.datetime "soundfile_updated_at"
   end
 
   create_table "tracks", force: true do |t|

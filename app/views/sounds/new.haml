@@ -1,0 +1,5 @@
+UPLOAD A NEW SOUND
+
+= form_for @sound, url: sounds_path, html: { multipart: true } do |f|
+  = f.file_field :soundfile
+  = f.submit "Upload"

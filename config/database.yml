@@ -39,7 +39,7 @@ staging:
   database: codaw_production
   pool: 5
   username: codaw
-  password: <%= ENV["CODAW_DB_PASSWORD"] %>
+  password: <%= ENV['CODAW_DB_PASSWORD'] %>
   socket: /var/lib/mysql/mysql.sock
 
 production:
@@ -50,5 +50,5 @@ production:
   database: wonderhomes_production
   pool: 5
   username: codaw
-  password: <%= ENV["CODAW_DB_PASSWORD"] %>
+  password: <%= ENV['CODAW_DB_PASSWORD'] %>
   socket: /var/lib/mysql/mysql.sock
