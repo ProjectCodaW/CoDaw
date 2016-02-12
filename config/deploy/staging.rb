@@ -9,7 +9,7 @@
 server 'ec2-52-8-0-173.us-west-1.compute.amazonaws.com', user: 'ec2-user',  roles: %w{app web db}
 set :deploy_to, "/var/www/html/dev.codaw.co"
 set :branch, 'stage'
-set :rails_env, 'production'
+set :rails_env, 'staging'
 set :default_env, {
     "PATH" => "/usr/local/bin/:$PATH"
 }
