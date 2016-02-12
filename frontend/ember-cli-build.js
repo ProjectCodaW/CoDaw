@@ -23,7 +23,6 @@ module.exports = function(defaults) {
   app.import('bower_components/foundation/js/foundation.min.js');
   app.import('bower_components/foundation/css/foundation.min.css');
   app.import('bower_components/wavesurfer.js/dist/wavesurfer.min.js');
-  app.import('bower_components/lodash/dist/lodash.min.js');
 
   //test audio
   app.import('vendor/telephone.wav', {
