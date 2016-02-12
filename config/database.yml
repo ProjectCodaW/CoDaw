@@ -47,7 +47,7 @@ production:
   adapter: mysql2
   encoding: utf8
   reconnect: false
-  database: wonderhomes_production
+  database: codaw_production
   pool: 5
   username: codaw
   password: <%= ENV['CODAW_DB_PASSWORD'] %>
