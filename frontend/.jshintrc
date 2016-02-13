@@ -5,7 +5,8 @@
     "-Promise",
     "WaveSurfer",
     "WX",
-    "CD"
+    "CD",
+    "$"
   ],
   "browser": true,
   "boss": true,
