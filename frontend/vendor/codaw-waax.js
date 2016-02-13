@@ -29,6 +29,8 @@ CD.timerWorker = null;
 if(WX._ctx === null) CD.ctx = new AudioContext();
 else CD.ctx = WX._ctx;
 
+CD.isPlaying = false;
+
 /*
 * addSound: Add a sound to the transport queue.
 *
@@ -126,11 +128,14 @@ CD.schedule = function() {
  * play(): play the transport.
  * */
 CD.play = function() {
-  if(!CD.immediateQueueReady) CD.fillImmediate(WX.Transport.getNow());
-  if(CD.paused.length)
-    CD.resumePausedAudio();
-  WX.Transport.start();
-  CD.timerWorker.postMessage("start");
+  if(!CD.isPlaying) {
+    if (!CD.immediateQueueReady) CD.fillImmediate(WX.Transport.getNow());
+    if (CD.paused.length)
+      CD.resumePausedAudio();
+    WX.Transport.start();
+    CD.timerWorker.postMessage("start");
+    CD.isPlaying = true;
+  }
 };
 
 CD.resumePausedAudio = function() {
@@ -151,11 +156,14 @@ CD.resumePausedAudio = function() {
 * pause(): pause the transport.
  */
 CD.pause = function() {
-  CD.clearImmediate();
-  WX.Transport.pause();
-  CD.timerWorker.postMessage("stop");
-  CD.prepareForPause();
-  CD.fillImmediate(WX.Transport.getNow());
+  if(CD.isPlaying) {
+    CD.clearImmediate();
+    WX.Transport.pause();
+    CD.timerWorker.postMessage("stop");
+    CD.prepareForPause();
+    CD.fillImmediate(WX.Transport.getNow());
+    CD.isPlaying = false;
+  }
 };
 
 CD.prepareForPause = function() {
@@ -174,19 +182,25 @@ CD.prepareForPause = function() {
 * seek(): seek to t in the timeline, in ticks.
  */
 CD.seek = function(t) {
+  var playAfterSeek = false;
+  if(CD.isPlaying) {
+    CD.pause();
+    playAfterSeek = true;
+  }
   CD.clearImmediate();
   WX.Transport.setNow(t);
   CD.playing = [];
   CD.paused = [];
   CD.recheckForPausedSounds();
   CD.fillImmediate(t);
+  if(playAfterSeek) CD.play();
 };
 
 CD.recheckForPausedSounds = function() {
   for(var i = 0; i < CD.sounds.length; i ++) {
     var x = CD.sounds[i];
-    if(x.time < WX.Transport.getNow() &&
-      WX.Transport.getNow() < (WX.Transport.sec2tick(x.node.getDuration()) - x.end) ) {
+    if(x.time <= WX.Transport.getNow() &&
+      WX.Transport.getNow() <= (WX.Transport.sec2tick(x.node.getDuration()) - x.end) ) {
         x.when = WX.Transport.getNow() - x.time;
         CD.paused.push(x);
     }

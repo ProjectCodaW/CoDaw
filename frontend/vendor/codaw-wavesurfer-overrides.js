@@ -5,8 +5,6 @@
  */
 
 if(WaveSurfer === null) console.error('ERROR: Import wavesurfer.js before this script!');
-
-var DELAY = 2.0;
 console.log('loading overrides 2...');
 WaveSurfer.WebAudio.play = function (when, start, end) {
   // need to re-create source on each playback
@@ -36,7 +34,7 @@ WaveSurfer.WebAudio.state.playing = {
   },
   getPlayedPercents: function () {
     var duration = this.getDuration();
-    return ((this.getCurrentTime() - DELAY) / duration) || 0;
+    return (this.getCurrentTime() / duration) || 0;
   },
   getCurrentTime: function () {
     return this.startPosition + this.getPlayedTime();
