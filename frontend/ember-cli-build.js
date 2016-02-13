@@ -24,15 +24,6 @@ module.exports = function(defaults) {
   app.import('bower_components/foundation/css/foundation.min.css');
   app.import('bower_components/wavesurfer.js/dist/wavesurfer.min.js');
   app.import('bower_components/lodash/dist/lodash.min.js');
-  app.import('vendor/WAAX/build/waax.min.js');
-  //Gonna need this if we decide to go with mui for our plugin interfaces:
-  //app.import('vendor/WAAX/build/mui/bower_components/webcomponentsjs/webcomponents.min.js');
-  app.import('vendor/codaw-wavesurfer-overrides.js', {
-    destDir: 'engine'
-  });
-  app.import('vendor/codaw-waax.js', {
-    destDir: 'engine'
-  });
 
   //test audio
   app.import('vendor/telephone.wav', {
