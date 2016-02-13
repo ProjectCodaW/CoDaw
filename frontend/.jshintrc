@@ -3,9 +3,7 @@
     "document",
     "window",
     "-Promise",
-    "WaveSurfer",
-    "WX",
-    "CD"
+    "WaveSurfer"
   ],
   "browser": true,
   "boss": true,
