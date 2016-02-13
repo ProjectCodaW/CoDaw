@@ -28,7 +28,7 @@ gem 'jquery-mousewheel-rails', '~> 0.0.9'
 gem 'haml', '~> 4.0.6'
 gem 'turbolinks', '~> 2.5.3'
 gem 'foundation-rails', '~> 5.5.2.1'
-gem 'ember-cli-rails', '~> 0.7.0'
+gem 'ember-cli-rails', '~> 0.7.1'
 gem 'sass-rails',   '~> 5.0.1'
 gem 'coffee-rails', '~> 4.1.0'
 
