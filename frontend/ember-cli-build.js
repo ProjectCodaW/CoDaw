@@ -22,9 +22,27 @@ module.exports = function(defaults) {
 
   app.import('bower_components/foundation/js/foundation.min.js');
   app.import('bower_components/foundation/css/foundation.min.css');
-  app.import('bower_components/wavesurfer.js/dist/wavesurfer.min.js');
-  app.import('bower_components/lodash/dist/lodash.min.js');
-  app.import('vendor/WAAX/build/waax.min.js');
+
+  //Wavsurfer import
+  app.import('bower_components/wavesurfer.js/src/wavesurfer.js');
+  app.import('bower_components/wavesurfer.js/src/util.js');
+  app.import('bower_components/wavesurfer.js/src/webaudio.js');
+  app.import('bower_components/wavesurfer.js/src/mediaelement.js');
+  app.import('bower_components/wavesurfer.js/src/drawer.js');
+  app.import('bower_components/wavesurfer.js/src/drawer.canvas.js');
+  app.import('bower_components/wavesurfer.js/src/html-init.js');
+
+
+  app.import('bower_components/lodash/dist/lodash.min.js')
+
+  //WAAX import
+  app.import('vendor/WAAX/src/waax.js');
+  app.import('vendor/WAAX/src/waax.extension.js');
+  app.import('vendor/WAAX/src/waax.util.js');
+  app.import('vendor/WAAX/src/waax.core.js');
+  app.import('vendor/WAAX/src/waax.timebase.js');
+  app.import('vendor/WAAX/src/mui/mui.js');
+
   //Gonna need this if we decide to go with mui for our plugin interfaces:
   //app.import('vendor/WAAX/build/mui/bower_components/webcomponentsjs/webcomponents.min.js');
   app.import('vendor/codaw-wavesurfer-overrides.js', {
