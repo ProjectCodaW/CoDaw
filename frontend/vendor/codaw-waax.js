@@ -229,7 +229,8 @@ CD.init = function() {
 /*
 MARK: CD.view
  */
-CD.view.pxPerTick = 3; //for now.
+CD.view = new Object;
+CD.view.pxPerTick = .01; //for now.
 CD.view.getWavesurferWidth = function(WS) {
   return CD.view.pxPerTick * WX.Transport.sec2tick(WS.getDuration());
 
