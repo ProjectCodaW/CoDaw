@@ -18,6 +18,10 @@ io.on('connection', function(socket){
   });
 });
 
+var ping = io.of('/pings').on('connection', function(socket) {
+	socket.emit('ping', { userName: 'Railsass Bitch', userColor: '#FFF',track: 1, tick: 400})
+    });
+
 server.listen(7000, function(){
   console.log('listening on *:7000');
 });
