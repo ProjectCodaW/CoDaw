@@ -4,9 +4,6 @@ export default Ember.Component.extend({
   cableService: Ember.inject.service('cable'),
   store: Ember.inject.service(),
 
-  // instead of an empty array, this should make a request to /messages
-  // and load the resulting array into messages.
-  messages: [],
   username: 'guest',
   body: 'message body',
 
@@ -15,8 +12,9 @@ export default Ember.Component.extend({
 
     var subscription = consumer.subscriptions.create("MessageChannel", {
       received: (message) => {
-        var parsedMessage = JSON.parse(message);
-        this.get('messages').pushObject(parsedMessage);
+        var messageJSON = JSON.parse(message);
+        var newMessage = this.get('store').createRecord('message', messageJSON);
+        this.get('messages').pushObject(newMessage._internalModel);
       }
     });
 
