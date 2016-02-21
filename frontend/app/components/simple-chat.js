@@ -2,6 +2,7 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
   cableService: Ember.inject.service('cable'),
+  store: Ember.inject.service(),
 
   // instead of an empty array, this should make a request to /messages
   // and load the resulting array into messages.

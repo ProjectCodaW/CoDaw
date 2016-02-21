@@ -19,7 +19,7 @@
                 {{#paper-content class="md-whiteframe-z1 list-demo"}}
                     {{#paper-list class="strip-padding-tb"}}
                         <div class="track-parent">
-                            {{#each model as |track|}}
+                            {{#each model.tracks as |track|}}
                                 {{#paper-item class="md-3-line"}}
                                     <div class="md-list-item-text">
                                         {{#audio-track}}
@@ -56,7 +56,7 @@
 <div class="columns small-2 right strip-padding" data-sticky-container>
   <div class="sticky" data-sticky>
       <div class="chat">
-        {{simple-chat}}
+        {{simple-chat messages=model.messages}}
         {{#paper-button class="startChat" raised=true primary=true}}Join Chat{{/paper-button}}
       </div>
   </div>
