@@ -9,6 +9,6 @@ class MessageChannel < ApplicationCable::Channel
   end
 
   def receive(data)
-    ActionCable.server.broadcast 'messages', data
+    Message.create! username: data['username'], body: data['body']
   end
 end

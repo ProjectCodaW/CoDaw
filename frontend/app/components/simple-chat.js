@@ -3,6 +3,8 @@ import Ember from 'ember';
 export default Ember.Component.extend({
   cableService: Ember.inject.service('cable'),
 
+  // instead of an empty array, this should make a request to /messages
+  // and load the resulting array into messages.
   messages: [],
   username: 'guest',
   body: 'message body',
@@ -11,8 +13,9 @@ export default Ember.Component.extend({
     var consumer = this.get('cableService').createConsumer('ws://localhost:3000/websocket');
 
     var subscription = consumer.subscriptions.create("MessageChannel", {
-      received: (data) => {
-        this.get('messages').pushObject({username: data.username, body: data.body});
+      received: (message) => {
+        var parsedMessage = JSON.parse(message);
+        this.get('messages').pushObject(parsedMessage);
       }
     });
 
