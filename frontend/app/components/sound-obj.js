@@ -17,7 +17,8 @@ export default Ember.Component.extend({
     this.wavesurfer = WaveSurfer.create({
       container: '#'+this.id,
       waveColor: this.soundColor,
-      progressColor: this.soundProgressColor
+      progressColor: this.soundProgressColor,
+      fillParent: true
     });
 
     //animate entrance
@@ -32,7 +33,25 @@ export default Ember.Component.extend({
 
 
     this.wavesurfer.load(this.fname);
+    this.wavesurfer.url = this.fname;
     this.placeInCD = CD.addSound(this.start, this.startCrop, this.endCrop, this.wavesurfer);
+    
+    // Redraw buffer after load
+    var soundobj = this;
+    this.wavesurfer.on('ready', function() {
+        soundobj.setWidth(CD.view.getWavesurferWidth(soundobj.wavesurfer)+'px');
+    });
+    
+  },
+
+  click: function() {
+    CD.play();
+  },
+  
+  /*MARK: NON-EMBER FUNCTIONS*/
+  setWidth: function(pixels) {
+    Ember.$('#' + this.id).width(pixels);
+    this.wavesurfer.drawBuffer();
   },
 
   /*MARK: ACTIONS*/

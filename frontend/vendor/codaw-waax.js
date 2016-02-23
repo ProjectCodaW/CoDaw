@@ -31,6 +31,7 @@ else CD.ctx = WX._ctx;
 
 CD.isPlaying = false;
 
+
 /*
 * addSound: Add a sound to the transport queue.
 *
@@ -72,6 +73,8 @@ CD.modifySound = function(idx, tick, s, e, n) {
 CD.removeSound = function(idx) {
   CD.sounds[idx] = null;
 };
+
+
 
 /*********************
  * BACKEND STUFF
@@ -220,6 +223,17 @@ CD.init = function() {
   //want to make sure we're passing by value
   var lookahead_by_ms = CD.lookaheadTime * 1000;
   CD.timerWorker.postMessage({"interval":lookahead_by_ms});
+};
+
+
+/*
+MARK: CD.view
+ */
+CD.view = new Object;
+CD.view.pxPerTick = .01; //for now.
+CD.view.getWavesurferWidth = function(WS) {
+  return CD.view.pxPerTick * WX.Transport.sec2tick(WS.getDuration());
+
 };
 
 window.addEventListener("load", CD.init );
