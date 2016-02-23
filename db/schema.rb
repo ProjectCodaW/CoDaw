@@ -11,9 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160209224352) do
+ActiveRecord::Schema.define(version: 20160220225517) do
 
-  create_table "projects", force: true do |t|
+  create_table "messages", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
+    t.string   "username"
+    t.text     "body",       limit: 65535
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+  end
+
+  create_table "projects", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
     t.float    "gain",       limit: 24
     t.float    "bpm",        limit: 24
     t.string   "time_sig"
@@ -21,7 +28,7 @@ ActiveRecord::Schema.define(version: 20160209224352) do
     t.datetime "updated_at"
   end
 
-  create_table "sound_objects", force: true do |t|
+  create_table "sound_objects", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
     t.integer  "track_id"
     t.integer  "project_position", limit: 8
     t.integer  "sound_id"
@@ -29,12 +36,11 @@ ActiveRecord::Schema.define(version: 20160209224352) do
     t.integer  "ticks_from_end",   limit: 8
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.index ["sound_id"], name: "index_sound_objects_on_sound_id", using: :btree
+    t.index ["track_id"], name: "index_sound_objects_on_track_id", using: :btree
   end
 
-  add_index "sound_objects", ["sound_id"], name: "index_sound_objects_on_sound_id", using: :btree
-  add_index "sound_objects", ["track_id"], name: "index_sound_objects_on_track_id", using: :btree
-
-  create_table "sounds", force: true do |t|
+  create_table "sounds", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
     t.float    "bpm",                    limit: 24
     t.integer  "duration",               limit: 8
     t.datetime "created_at"
@@ -45,13 +51,12 @@ ActiveRecord::Schema.define(version: 20160209224352) do
     t.datetime "soundfile_updated_at"
   end
 
-  create_table "tracks", force: true do |t|
+  create_table "tracks", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
     t.integer  "project_id"
     t.float    "gain",       limit: 24
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.index ["project_id"], name: "index_tracks_on_project_id", using: :btree
   end
-
-  add_index "tracks", ["project_id"], name: "index_tracks_on_project_id", using: :btree
 
 end
