@@ -3,6 +3,7 @@ import Ember from 'ember';
 export default Ember.Component.extend({
   fname: 'default.wav', //url of the audio file we're loading
   id: 'aWave', //name of the container to create
+
   start: 0, //Tick that sound starts on in project
   startCrop: 0, //how far into the sound we are cropped to
   endCrop: 0, //how much of the end we've truncated
@@ -19,12 +20,19 @@ export default Ember.Component.extend({
       progressColor: this.soundProgressColor
     });
 
+    //animate entrance
+    var me = this;
+    this.wavesurfer.on('ready', function() {
+      var animationEnd = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
+      $('#'+ me.id).addClass('animated bounceInRight').one(animationEnd, function() {
+        $('#'+ me.id).removeClass('animated bounceInRight');
+      });
+      me.wavesurfer.un('ready');
+    });
+
+
     this.wavesurfer.load(this.fname);
     this.placeInCD = CD.addSound(this.start, this.startCrop, this.endCrop, this.wavesurfer);
-  },
-
-  click: function() {
-    CD.play();
   },
 
   /*MARK: ACTIONS*/
@@ -59,6 +67,17 @@ export default Ember.Component.extend({
       if(this.placeInCD >= 0) {
         CD.modifySound(this.placeInCD, this.start, this.startCrop, this.endCrop, this.wavesurfer);
       }
+    },
+
+    animateEntrance() {
+      var me = this;
+      this.wavesurfer.on('ready', function() {
+        var animationEnd = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
+        $('#'+ me.id).addClass('animated bounceInRight').one(animationEnd, function() {
+          $('#'+ me.id).removeClass('animated bounceInRight');
+        });
+        me.wavesurfer.un('ready');
+      });
     }
 
   }

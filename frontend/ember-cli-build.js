@@ -23,6 +23,9 @@ module.exports = function(defaults) {
   app.import('bower_components/foundation/js/foundation.min.js');
   app.import('bower_components/foundation/css/foundation.min.css');
 
+  //animate.css
+  app.import('vendor/animate.min.css');
+
   //Wavsurfer import
   app.import('bower_components/wavesurfer.js/src/wavesurfer.js');
   app.import('bower_components/wavesurfer.js/src/util.js');
