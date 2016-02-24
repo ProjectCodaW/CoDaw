@@ -4,42 +4,36 @@ $warn:'orange';
 @import 'ember-paper';
 
 .strip-padding {
-    padding-left:0; 
+    padding-left:0;
     padding-right:0;
 }
 
 .strip-padding-tb {
-    padding-top:0; 
+    padding-top:0;
     padding-bottom:0;
 }
 
 .to-master-panel {
-    background-color:#333; 
-    height:calc(100vh - 64px); 
-    padding-left:0; 
+    background-color:#333;
+    height:calc(100vh - 64px);
+    padding-left:0;
     padding-right:0;
 }
 
 .transport {
-    background-color:#111; 
-    height:60px; 
-    padding-left:0; 
+    background-color:#111;
+    color:#888;
+    height:10vh;
+    padding-left:0;
     padding-right:0;
-    z-index:5;
+    z-index:1;
     position: fixed;
-    bottom:0;
     width:76.38888861%;
-    
-    button {
-        position: relative;
-        top: 50%;
-        transform: translateY(-50%);
-    }
 }
 
 .tracks {
     background-color:#AAA;
-    height:calc(100vh - 64px); 
+    height:calc(90vh - 64px);
     padding: .9375rem;
     z-index: -2;
     overflow: auto;
@@ -56,7 +50,7 @@ $warn:'orange';
         overflow: scroll;
         margin-bottom:0px;
         width: inherit;
-        
+
         .message-body {
             background-color: #A5CBC3;
             color: #444;
@@ -64,31 +58,31 @@ $warn:'orange';
             padding: 2px 8px;
             display: inline-block;
         }
-        
+
         .message-sender {
             margin-top: 3px;
             margin-bottom: 15px;
             font-size: .75em;
         }
-    } 
-    
+    }
+
     .md-input {
         margin-bottom: 0;
     }
-    
+
     md-input-container {
         padding-bottom:0;
     }
-    
+
     .send-button {
         margin: 20px 0;
         width: 100%;
-    }    
-    
+    }
+
     position: relative;
-    background-color:white; 
-    height:calc(100vh - 64px); 
-    padding-left:12px; 
+    background-color:white;
+    height:calc(100vh - 64px);
+    padding-left:12px;
     padding-right:12px;
 }
 
@@ -108,6 +102,8 @@ $warn:'orange';
     font-size: 0;
     padding:0;
     margin:0;
+    background-color:#888;
+    height: 100px;
 }
 
 .space {
@@ -118,13 +114,32 @@ $warn:'orange';
 }
 
 .track-parent {
+  background-color: #AAA;
+  height: 100%;
+}
+
+.beat-ruler {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 20px;
+
+  color: white;
+}
+
+.transport-measure {
+  background-color: #391;
+  border-left: double 4px #333;
 }
 
 .sound-obj {
-    display: inline-block; 
-    width:50%;
+    position: absolute;
+    display: inline-block;
     *display: inline;
     background-color: #FFF;
+    border-radius: 10px;
+    vertical-align: middle;
+    height: 80%;
 }
 
 .empty-track {
@@ -141,6 +156,17 @@ $warn:'orange';
     border-bottom-width: 1px;
     border-bottom-style: solid;
     border-bottom-color: rgba(0, 0, 0, 0.12)
+}
+
+.ping {
+  color: aliceblue;
+  font-size: 90%;
+  position: absolute;
+  top: 0px;
+  border-radius: 20px;
+  height: 140px;
+  width: 90px;
+  opacity: 0.9;
 }
 
 .ground {

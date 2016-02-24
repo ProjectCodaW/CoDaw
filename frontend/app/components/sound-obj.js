@@ -14,6 +14,11 @@ export default Ember.Component.extend({
 
   /*MARK: OVERRIDES*/
   didInsertElement: function() {
+    this.$().css({
+      position: "absolute",
+      left: this.start * CD.view.pxPerTick,
+      top: "5px"
+    })
     this.wavesurfer = WaveSurfer.create({
       container: '#'+this.id,
       waveColor: this.soundColor,
@@ -28,6 +33,11 @@ export default Ember.Component.extend({
       $('#'+ me.id).addClass('animated bounceInRight').one(animationEnd, function() {
         $('#'+ me.id).removeClass('animated bounceInRight');
       });
+      console.log('px per tick: '+ CD.view.pxPerTick + ' width: ' + CD.view.getWavesurferWidth(me.wavesurfer));
+      me.$().css({
+        width: CD.view.getWavesurferWidth(me.wavesurfer)
+      });
+
       me.wavesurfer.un('ready');
     });
 
@@ -35,22 +45,22 @@ export default Ember.Component.extend({
     this.wavesurfer.load(this.fname);
     this.wavesurfer.url = this.fname;
     this.placeInCD = CD.addSound(this.start, this.startCrop, this.endCrop, this.wavesurfer);
-    
+
     // Redraw buffer after load
     var soundobj = this;
     this.wavesurfer.on('ready', function() {
         soundobj.setWidth(CD.view.getWavesurferWidth(soundobj.wavesurfer)+'px');
     });
-    
+
   },
 
   click: function() {
-    // CD.play();
+    CD.play();
   },
-  
+
   /*MARK: NON-EMBER FUNCTIONS*/
   setWidth: function(pixels) {
-    Ember.$('#' + this.id).width(pixels);
+    Ember.$().css({width:pixels});
     this.wavesurfer.drawBuffer();
   },
 
@@ -85,6 +95,9 @@ export default Ember.Component.extend({
     onUpdate() {
       if(this.placeInCD >= 0) {
         CD.modifySound(this.placeInCD, this.start, this.startCrop, this.endCrop, this.wavesurfer);
+        this.$().css({
+          left: this.start * CD.view.pxPerTick,
+        })
       }
     },
 

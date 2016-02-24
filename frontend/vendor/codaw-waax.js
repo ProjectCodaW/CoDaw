@@ -9,6 +9,10 @@ if(WaveSurfer.overridden === null) console.error("ERROR: Load codaw-wavesurfer-o
 
 /* Properties */
 CD = {};
+
+//total song length in ticks: set by backend
+CD.songLength = 1000000;
+
 //our total queue of sounds
 CD.sounds = [];
 
@@ -89,6 +93,7 @@ CD.removeSound = function(idx) {
 CD.fillImmediate = function(t) {
   for(i = 0; i < CD.sounds.length; i++) {
     if(t<=CD.sounds[i].time && CD.sounds[i].time < (t+CD.lookaheadTime)){
+      console.log("found something");
       CD.immediate.push(CD.sounds[i]);
     }
   }
@@ -105,7 +110,6 @@ CD.flushImmediate = function() {
       WX.Transport.tick2sec(x.start),
       x.node.getDuration() + WX.Transport.tick2sec(x.end));
     CD.playing.push(x);
-    console.log('time to play it: '+WX.Transport.tick2sec(x.time - WX.Transport.getNow()));
   }
   CD.immediateQueueReady = false;
 };
@@ -223,6 +227,7 @@ CD.init = function() {
   //want to make sure we're passing by value
   var lookahead_by_ms = CD.lookaheadTime * 1000;
   CD.timerWorker.postMessage({"interval":lookahead_by_ms});
+
 };
 
 
@@ -230,7 +235,7 @@ CD.init = function() {
 MARK: CD.view
  */
 CD.view = new Object;
-CD.view.pxPerTick = .01; //for now.
+CD.view.pxPerTick = 0.15; //for now.
 CD.view.getWavesurferWidth = function(WS) {
   return CD.view.pxPerTick * WX.Transport.sec2tick(WS.getDuration());
 
