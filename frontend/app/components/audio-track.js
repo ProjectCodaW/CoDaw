@@ -1,6 +1,32 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
+    count:0,
+ 
+    setupSubscription: Ember.on('init', function() {
+
+        var subscription = this.get('consumer').subscriptions.create("PingChannel", {
+            received: (data) => {
+                
+                this.set('count',this.get('count')+1);
+                
+                // Add in check that logged in user is not the sending user
+                // if (data.username !== self.username) {
+                if (this.get('trackNum') === data.trackNum) {
+                    this.drawPing(
+                        data.pingLocationInTicks,
+                        data.userName,
+                        data.color
+                    );
+                }   
+                // } 
+                              
+            }
+        });
+        
+        this.set('subscription', subscription);
+    }),
+    
     //id: function() { return "track-" + (Math.random() * 10000).toFixed(0)},
     didInsertElement: function(){
         // Scroll the mute and solo buttons as we scroll up and down
@@ -21,8 +47,15 @@ export default Ember.Component.extend({
   click: function(evt) {
 
     var pxPerTick= 0.01; //this will be gotten from the CD.view constant
-    //this.sendAction("drawPing", pxPerTick * (evt.clientX - $(this).offset.x), "Rails A.B. Geller", "#444");
     this.drawPing( (evt.clientX - this.$().offset().left)/pxPerTick, "Rails A.B. Geller", "#A3E");
+    
+    var pingLocationInTicks = (evt.clientX - this.$().offset().left)/pxPerTick;
+    this.get('subscription').send({
+        pingLocationInTicks: pingLocationInTicks, 
+        userName: "username", 
+        trackNum: this.get('trackNum'), 
+        color: "#A3E"
+    });
   },
 
   drawPing(tick, userName, userColor) {
