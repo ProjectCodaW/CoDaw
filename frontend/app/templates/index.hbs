@@ -1,8 +1,12 @@
 {{#paper-toolbar}}
   <div class="md-toolbar-tools">
-      <div class="logo">
-          {{#link-to "index"}}CoDaw{{/link-to}}
-      </div>
+    <div class="logo">
+        {{#link-to "index"}}CoDaw{{/link-to}}
+    </div>
+    <span flex></span>
+    <div class="signout">
+        <a rel="nofollow" data-method="destroy" href="/session">Sign Out</a>
+    </div>
   </div>
 {{/paper-toolbar}}
 
