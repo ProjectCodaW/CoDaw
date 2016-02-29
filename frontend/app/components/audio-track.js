@@ -24,7 +24,10 @@ export default Ember.Component.extend({
             }
         });
         
+        var messageSub = this.get('consumer').subscriptions.create("MessageChannel", {});
+
         this.set('subscription', subscription);
+        this.set('messageSub', messageSub);
     }),
     
     //id: function() { return "track-" + (Math.random() * 10000).toFixed(0)},
@@ -56,6 +59,11 @@ export default Ember.Component.extend({
         trackNum: this.get('trackNum'), 
         color: "#A3E"
     });
+    
+    this.get('messageSub').send({
+        username: 'PING', 
+        body: 'There was a ping at ' + pingLocationInTicks + ' on track #' + (this.get('trackNum') + 1) + '!'
+    })
   },
 
   drawPing(tick, userName, userColor) {

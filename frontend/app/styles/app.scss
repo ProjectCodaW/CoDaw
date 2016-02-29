@@ -44,11 +44,46 @@ $warn:'orange';
 }
 
 .chat {
+    .messages {
+        position:fixed;
+        height:100%;
+        overflow: scroll;
+        margin-bottom:0px;
+        width: inherit;
+        
+        .message-body {
+            background-color: #A5CBC3;
+            color: #444;
+            box-shadow: 0 1px 2px rgba(black, 0.2);
+            padding: 2px 8px;
+            display: inline-block;
+        }
+        
+        .message-sender {
+            margin-top: 3px;
+            margin-bottom: 15px;
+            font-size: .75em;
+        }
+    } 
+    
+    .md-input {
+        margin-bottom: 0;
+    }
+    
+    md-input-container {
+        padding-bottom:0;
+    }
+    
+    .send-button {
+        margin: 20px 0;
+        width: 100%;
+    }    
+    
     position: relative;
-    background-color:#BBB; 
+    background-color:white; 
     height:calc(100vh - 64px); 
-    padding-left:0; 
-    padding-right:0;
+    padding-left:12px; 
+    padding-right:12px;
 }
 
 .startChat {
