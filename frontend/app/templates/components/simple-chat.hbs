@@ -1,9 +1,13 @@
-{{input value=username}}
-{{input value=body }}
-<button {{action "sendMessage"}}>
+{{paper-input label="Username" value=username}}
+{{paper-input label="Message Body" value=body }}
+{{#paper-button class="send-button" raised=true action="sendMessage" primary=true}}
   Send
-</button>
+{{/paper-button}}
 
-{{#each messages as |message|}}
-  <p>{{message.username}} -> {{message.body}}</p>
-{{/each}}
+<div class="messages">
+    {{#each reverseMessages as |message|}}
+        <!--<div class="prebox"></div>-->
+        <div class="message-body">{{message.body}}</div>
+        <div class="message-sender">{{message.username}}</div>
+    {{/each}}
+</div>
