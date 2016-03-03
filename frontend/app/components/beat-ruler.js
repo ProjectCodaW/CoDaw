@@ -4,6 +4,9 @@ export default Ember.Component.extend({
   class: "beat-ruler",
   fontPercentage: 0.2,
   spacePercentage: 0.92,
+
+  bgColors: ["#CC5151", "#A3CC51", "#391959", "#219186", "#BFB791"],
+
   text: function () {
     var pxPerMeasure = CD.view.pxPerTick*480*4;
     var nMeasures = WX.tick2mbst(CD.songLength).measure;
@@ -18,20 +21,22 @@ export default Ember.Component.extend({
         'width: '+ pxPerMeasure+
         '; top: 0px; left: '+
         pxPerMeasure * (i - 1) +
-        'px;">' + '<strong>' + i + '</strong>' + '|||' + '</div>');
+        'px;' +
+        'background-color: '+ this.bgColors[i%this.bgColors.length] +
+        ';">' + '<strong>' + i + '</strong>' + '|||' + '</div>');
       else if (i < 100) txt = txt + ('<div id="meas-' + i +
         '" class="transport-measure" ' +
         'style="position: absolute; ' +
         'justify-content: space-around; ' +
-        'width: '+ pxPerMeasure+
-        '; ' +
+        'width: '+ pxPerMeasure+ '; ' +
         'top: 0px; ' +
-        'left: ' + pxPerMeasure * (i - 1) + 'px;">' +
+        'left: ' + (pxPerMeasure * (i - 1)) + 'px; ' +
+        'background-color: '+ this.bgColors[i%this.bgColors.length] +';">' +
         '<span ' +
         'style="letter-spacing: 0px; ' +
         'font-size: ' + (this.fontSize() / 1.2).toFixed(2) + 'px; ' +
-        'margin-right: '+this.letterSpacing()+'px;">' +
-        '><strong>' + i +
+        'margin-right: '+this.letterSpacing()+'px; ' +
+        '"><strong>' + i +
         '</strong></span>' + '|||' + '</div>');
       else if (i < 1000) txt = txt + ('<div id="meas-' + i + '" class="transport-measure" ' +
         'style="position: absolute; ' +
@@ -39,7 +44,8 @@ export default Ember.Component.extend({
         'width: '+ CD.view.pxPerTick * 480+
         '; ' +
         'top: 0px; left: '+
-        pxPerMeasure * (i - 1) +'px;">' +
+        pxPerMeasure * (i - 1) +'px;' +
+        'background-color: '+ this.bgColors[i%this.bgColors.length] +'">' +
         '<span style="letter-spacing: 0px; ' +
         'font-size: ' + (this.fontSize() / 1.4).toFixed(2) + 'px;' +
         'margin-right: '+this.letterSpacing()+'px;">' +

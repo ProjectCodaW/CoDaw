@@ -48,11 +48,10 @@ export default Ember.Component.extend({
     },
 
   click: function(evt) {
+    var pingLocationInTicks = (evt.clientX - this.$().offset().left)/CD.view.pxPerTick;
+    //this.drawPing( (evt.clientX/* - this.$().offset().left*/)/pxPerTick, "Rails A.B. Geller", "#A3E");
 
-    var pxPerTick= 0.01; //this will be gotten from the CD.view constant
-    this.drawPing( (evt.clientX - this.$().offset().left)/pxPerTick, "Rails A.B. Geller", "#A3E");
 
-    var pingLocationInTicks = (evt.clientX - this.$().offset().left)/pxPerTick;
     this.get('subscription').send({
         pingLocationInTicks: pingLocationInTicks,
         userName: "username",
@@ -70,7 +69,7 @@ export default Ember.Component.extend({
   drawPing(tick, userName, userColor) {
     console.log("i was called at tick " + tick +"!");
     var me = this.$();
-    var pxPerTick= 0.01; //this will be gotten from the CD.view constant
+
     var div =  "ping" + tick.toFixed(0);
     me.append("<div id='" + div + "' class='ping'></div>");
     var ping = Ember.$('#' + div);
@@ -78,7 +77,7 @@ export default Ember.Component.extend({
       console.log(ping);
       ping.css({
 
-        "left": tick * pxPerTick + "px",
+        "left": tick * CD.view.pxPerTick + "px",
 
         "background-color": userColor
       });

@@ -54,9 +54,6 @@ export default Ember.Component.extend({
 
   },
 
-  click: function() {
-    CD.play();
-  },
 
   /*MARK: NON-EMBER FUNCTIONS*/
   setWidth: function(pixels) {
