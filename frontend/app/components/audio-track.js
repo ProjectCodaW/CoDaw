@@ -62,7 +62,7 @@ export default Ember.Component.extend({
     var measureString = (theMBST.measure+1) + ":" + (theMBST.beat+1);
     this.get('messageSub').send({
         username: 'PING',
-        body: 'username pinged at ' + measureString + ' on track #' + (this.get('trackNum') + 1) + '.'
+        body: 'username pinged at @' + measureString + ' on track #' + (this.get('trackNum') + 1) + '.'
     })
   },
 

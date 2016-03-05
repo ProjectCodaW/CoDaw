@@ -241,4 +241,29 @@ CD.view.getWavesurferWidth = function(WS) {
 
 };
 
+CD.view.timeLinkRegExp = /(?!;">)@([0-9]+:[1-4])/g;
+
+CD.view.scrollToLink = function(text) {
+  var t = text.split(':');
+  var px = ((((parseInt(t[0]) * 4 - 1) * 480) + (parseInt(t[1]) - 2) * 480) * CD.view.pxPerTick) - $('.tracks-box').offset().left - 100;
+  console.log(t);
+  console.log(px);
+
+  $('*').animate({scrollLeft:px}, 800);
+}
+
+CD.view.makeTimeLink = function(text) {
+  return text.replace(
+    CD.view.timeLinkRegExp,
+    '<a class="hashtag" onClick="CD.view.scrollToLink(\'$1\');">@$1</a>'
+  );
+}
+
+CD.view.updateAllTimeLinks = function() {
+  var setup = CD.view.makeTimeLink;
+  $('.chat .messages .message-body').each(function(index) {
+    $(this).html(setup($(this).html()));
+  });
+}
+
 window.addEventListener("load", CD.init );
