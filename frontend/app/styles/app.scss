@@ -22,18 +22,24 @@ $warn:'orange';
 
 .transport {
     background-color:#111; 
-    color:#888;
-    height:10vh; 
+    height:60px; 
     padding-left:0; 
     padding-right:0;
-    z-index:1;
+    z-index:5;
     position: fixed;
+    bottom:0;
     width:76.38888861%;
+    
+    button {
+        position: relative;
+        top: 50%;
+        transform: translateY(-50%);
+    }
 }
 
 .tracks {
     background-color:#AAA;
-    height:calc(90vh - 64px); 
+    height:calc(100vh - 64px); 
     padding: .9375rem;
     z-index: -2;
     overflow: auto;

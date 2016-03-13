@@ -52,7 +52,11 @@
                     {{/paper-list}}
                 {{/paper-content}}
             </div>
-            <div class="transport"><span>transport</span></div>
+            <div class="transport">
+                {{#paper-button icon-button=true raised=true action="playTracks"}}{{paper-icon icon="play-circle-outline"}}{{/paper-button}}
+                {{#paper-button icon-button=true raised=true action="pauseTracks"}}{{paper-icon icon="pause-circle-outline"}}{{/paper-button}}
+                {{#paper-button icon-button=true raised=true action="stopTracks"}}{{paper-icon icon="crop-square"}}{{/paper-button}}
+            </div>
         </div>
     </div>
 </div>
