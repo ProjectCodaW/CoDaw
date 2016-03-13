@@ -18,7 +18,8 @@ export default Ember.Component.extend({
       position: "absolute",
       left: this.start * CD.view.pxPerTick,
       top: "5px"
-    })
+    });
+    
     this.wavesurfer = WaveSurfer.create({
       container: '#'+this.id,
       waveColor: this.soundColor,
@@ -29,15 +30,14 @@ export default Ember.Component.extend({
     //animate entrance
     var me = this;
     this.wavesurfer.on('ready', function() {
-      console.log('READY');
+    //   console.log('READY');
       me.setWidth(CD.view.getWavesurferWidth(me.wavesurfer)+'px');
       
       var animationEnd = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
-      $('#'+ me.id).addClass('animated bounceInRight').one(animationEnd, function() {
-        $('#'+ me.id).removeClass('animated bounceInRight');
+      Ember.$('#'+ me.id).addClass('animated bounceInRight').one(animationEnd, function() {
+        Ember.$('#'+ me.id).removeClass('animated bounceInRight');
       });
-      console.log('px per tick: '+ CD.view.pxPerTick + ' width: ' + CD.view.getWavesurferWidth(me.wavesurfer));
-      me.setWidth(CD.view.getWavesurferWidth(me.wavesurfer));
+    //   console.log('px per tick: '+ CD.view.pxPerTick + ' width: ' + CD.view.getWavesurferWidth(me.wavesurfer));
 
       me.wavesurfer.un('ready');
     });
@@ -46,13 +46,13 @@ export default Ember.Component.extend({
     this.wavesurfer.load(this.fname);
     this.wavesurfer.url = this.fname;
     this.placeInCD = CD.addSound(this.start, this.startCrop, this.endCrop, this.wavesurfer);
-    
+
   },
 
 
   /*MARK: NON-EMBER FUNCTIONS*/
   setWidth: function(pixels) {
-    this.$().css({width:pixels});
+    Ember.$('#' + this.id).width(pixels);
     // this.wavesurfer.drawBuffer();
     
     // Go with the commented out version up there^. This is just for the demo.
@@ -93,7 +93,7 @@ export default Ember.Component.extend({
         CD.modifySound(this.placeInCD, this.start, this.startCrop, this.endCrop, this.wavesurfer);
         this.$().css({
           left: this.start * CD.view.pxPerTick,
-        })
+        });
       }
     },
 
@@ -101,8 +101,8 @@ export default Ember.Component.extend({
       var me = this;
       this.wavesurfer.on('ready', function() {
         var animationEnd = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
-        $('#'+ me.id).addClass('animated bounceInRight').one(animationEnd, function() {
-          $('#'+ me.id).removeClass('animated bounceInRight');
+        Ember.$('#'+ me.id).addClass('animated bounceInRight').one(animationEnd, function() {
+          Ember.$('#'+ me.id).removeClass('animated bounceInRight');
         });
         me.wavesurfer.un('ready');
       });

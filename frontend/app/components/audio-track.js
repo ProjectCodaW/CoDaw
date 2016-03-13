@@ -42,19 +42,13 @@ export default Ember.Component.extend({
         });
 
         var animationEnd = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
-        $('#' + this.id).addClass('animated fadeIn').one(animationEnd, function() {
-          $('#' + this.id).removeClass('animated fadeIn');
+        Ember.$('#' + this.id).addClass('animated fadeIn').one(animationEnd, function() {
+          Ember.$('#' + this.id).removeClass('animated fadeIn');
         });
     },
 
   click: function(evt) {
     var pingLocationInTicks = (evt.clientX - this.$().offset().left)/CD.view.pxPerTick;
-    //this.drawPing( (evt.clientX/* - this.$().offset().left*/)/pxPerTick, "Rails A.B. Geller", "#A3E");
-
-    var pxPerTick= CD.view.pxPerTick; //this will be gotten from the CD.view constant
-    this.drawPing( (evt.clientX - this.$().offset().left)/pxPerTick, "Rails A.B. Geller", "#A3E");
-    
-    var pingLocationInTicks = (evt.clientX - this.$().offset().left)/pxPerTick;
     
     this.get('subscription').send({
         pingLocationInTicks: pingLocationInTicks,
