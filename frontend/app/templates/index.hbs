@@ -28,7 +28,7 @@
                                     <div class="md-list-item-text">
                                         {{#audio-track trackNum=tracksIndex consumer=model.consumer}}
                                             {{#each track.sounds as |sound index|}}
-                                                {{sound-obj start=(sound-obj-start index) id=(sound-obj-id track.id index) class="sound-obj" fname='../assets/telephone.wav'}}
+                                                {{sound-obj start=(sound-obj-start index) id=(sound-obj-id track.id index) class="sound-obj" fname=sound}}
                                                 <div class="space">
                                                 </div>
                                             {{else}}
