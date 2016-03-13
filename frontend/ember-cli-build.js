@@ -59,6 +59,31 @@ module.exports = function(defaults) {
   app.import('vendor/telephone.wav', {
       destDir: 'assets'
   });
+  
+  app.import('vendor/DirectBass.mp3', {
+      destDir:'assets'
+  });
+  app.import('vendor/Drums.mp3', {
+      destDir:'assets'
+  });
+  app.import('vendor/FenderChords.mp3', {
+      destDir:'assets'
+  });
+  app.import('vendor/FenderSolo.mp3', {
+      destDir:'assets'
+  });
+  app.import('vendor/FenderTones.mp3', {
+      destDir:'assets'
+  });
+  app.import('vendor/Keyboards.mp3', {
+      destDir:'assets'
+  });
+  app.import('vendor/PowerChord.mp3', {
+      destDir:'assets'
+  });
+  app.import('vendor/TaylorChords.mp3', {
+      destDir:'assets'
+  });
 
   return app.toTree();
 };

@@ -49,7 +49,7 @@ export default Ember.Component.extend({
 
   click: function(evt) {
 
-    var pxPerTick= 0.01; //this will be gotten from the CD.view constant
+    var pxPerTick= CD.view.pxPerTick; //this will be gotten from the CD.view constant
     this.drawPing( (evt.clientX - this.$().offset().left)/pxPerTick, "Rails A.B. Geller", "#A3E");
     
     var pingLocationInTicks = (evt.clientX - this.$().offset().left)/pxPerTick;
@@ -69,7 +69,7 @@ export default Ember.Component.extend({
   drawPing(tick, userName, userColor) {
     console.log("i was called at tick " + tick +"!");
     var me = this.$();
-    var pxPerTick= 0.01; //this will be gotten from the CD.view constant
+    var pxPerTick= CD.view.pxPerTick; //this will be gotten from the CD.view constant
     var div =  "ping" + tick.toFixed(0);
     me.append("<div id='" + div + "' class='ping'></div>");
     var ping = Ember.$('#' + div);

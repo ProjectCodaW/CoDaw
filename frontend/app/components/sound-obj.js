@@ -24,6 +24,9 @@ export default Ember.Component.extend({
     //animate entrance
     var me = this;
     this.wavesurfer.on('ready', function() {
+      console.log('READY');
+      me.setWidth(CD.view.getWavesurferWidth(me.wavesurfer)+'px');
+      
       var animationEnd = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
       $('#'+ me.id).addClass('animated bounceInRight').one(animationEnd, function() {
         $('#'+ me.id).removeClass('animated bounceInRight');
@@ -36,12 +39,6 @@ export default Ember.Component.extend({
     this.wavesurfer.url = this.fname;
     this.placeInCD = CD.addSound(this.start, this.startCrop, this.endCrop, this.wavesurfer);
     
-    // Redraw buffer after load
-    var soundobj = this;
-    this.wavesurfer.on('ready', function() {
-        soundobj.setWidth(CD.view.getWavesurferWidth(soundobj.wavesurfer)+'px');
-    });
-    
   },
 
   click: function() {
@@ -51,7 +48,11 @@ export default Ember.Component.extend({
   /*MARK: NON-EMBER FUNCTIONS*/
   setWidth: function(pixels) {
     Ember.$('#' + this.id).width(pixels);
-    this.wavesurfer.drawBuffer();
+    // this.wavesurfer.drawBuffer();
+    
+    // Go with the commented out version up there^. This is just for the demo.
+    this.wavesurfer.empty();
+    this.wavesurfer.load(this.fname);
   },
 
   /*MARK: ACTIONS*/
