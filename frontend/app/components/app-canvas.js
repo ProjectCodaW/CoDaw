@@ -8,4 +8,8 @@ export default Ember.Component.extend({
       });
     });
   },
+
+  didInsertElement: function() {
+    this.$('.track-parent').css({width: CD.songLength * CD.view.pxPerTick});
+  }
 });

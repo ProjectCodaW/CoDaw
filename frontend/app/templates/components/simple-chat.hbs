@@ -7,7 +7,7 @@
 <div class="messages">
     {{#each reverseMessages as |message|}}
         <!--<div class="prebox"></div>-->
-        <div class="message-body">{{message.body}}</div>
+      {{#message-body class="message-body"}}{{message.body}}{{/message-body}}
         <div class="message-sender">{{message.username}}</div>
     {{/each}}
 </div>

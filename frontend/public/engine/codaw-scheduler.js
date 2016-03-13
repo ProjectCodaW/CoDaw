@@ -6,7 +6,10 @@ var timerID=null;
 var interval=100;
 
 self.onmessage= function(e){
-  if (e.data==="start") timerID=setInterval(function(){postMessage("t");},interval);
+  if (e.data==="start") timerID=setInterval(function()
+    {
+      postMessage("t");
+    },interval);
   else if (e.data.interval) {
     interval=e.data.interval;
     postMessage('Interval set to ' + interval + ' milliseconds');

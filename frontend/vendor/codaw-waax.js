@@ -9,6 +9,10 @@ if(WaveSurfer.overridden === null) console.error("ERROR: Load codaw-wavesurfer-o
 
 /* Properties */
 CD = {};
+
+//total song length in ticks: set by backend
+CD.songLength = 1000000;
+
 //our total queue of sounds
 CD.sounds = [];
 
@@ -89,6 +93,7 @@ CD.removeSound = function(idx) {
 CD.fillImmediate = function(t) {
   for(i = 0; i < CD.sounds.length; i++) {
     if(t<=CD.sounds[i].time && CD.sounds[i].time < (t+CD.lookaheadTime)){
+      console.log("found something");
       CD.immediate.push(CD.sounds[i]);
     }
   }
@@ -105,7 +110,6 @@ CD.flushImmediate = function() {
       WX.Transport.tick2sec(x.start),
       x.node.getDuration() + WX.Transport.tick2sec(x.end));
     CD.playing.push(x);
-    console.log('time to play it: '+WX.Transport.tick2sec(x.time - WX.Transport.getNow()));
   }
   CD.immediateQueueReady = false;
 };
@@ -223,6 +227,7 @@ CD.init = function() {
   //want to make sure we're passing by value
   var lookahead_by_ms = CD.lookaheadTime * 1000;
   CD.timerWorker.postMessage({"interval":lookahead_by_ms});
+
 };
 
 
@@ -230,10 +235,35 @@ CD.init = function() {
 MARK: CD.view
  */
 CD.view = new Object;
-CD.view.pxPerTick = .01; //for now.
+CD.view.pxPerTick = 0.15; //for now.
 CD.view.getWavesurferWidth = function(WS) {
   return CD.view.pxPerTick * WX.Transport.sec2tick(WS.getDuration());
 
 };
+
+CD.view.timeLinkRegExp = /(?!;">)@([0-9]+:[1-4])/g;
+
+CD.view.scrollToLink = function(text) {
+  var t = text.split(':');
+  var px = ((((parseInt(t[0]) * 4 - 1) * 480) + (parseInt(t[1]) - 2) * 480) * CD.view.pxPerTick) - $('.tracks-box').offset().left - 100;
+  console.log(t);
+  console.log(px);
+
+  $('*').animate({scrollLeft:px}, 800);
+}
+
+CD.view.makeTimeLink = function(text) {
+  return text.replace(
+    CD.view.timeLinkRegExp,
+    '<a class="hashtag" onClick="CD.view.scrollToLink(\'$1\');">@$1</a>'
+  );
+}
+
+CD.view.updateAllTimeLinks = function() {
+  var setup = CD.view.makeTimeLink;
+  $('.chat .messages .message-body').each(function(index) {
+    $(this).html(setup($(this).html()));
+  });
+}
 
 window.addEventListener("load", CD.init );

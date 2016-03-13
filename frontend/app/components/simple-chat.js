@@ -2,12 +2,12 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
   classNames:['chat'],
-  
+
   store: Ember.inject.service(),
 
   username: null,
   body: null,
-  
+
   reverseMessages: Ember.computed('messages','messages.[]', function() {
       if(!this.get('messages')){
           return Ember.A();
@@ -28,17 +28,18 @@ export default Ember.Component.extend({
     this.set('subscription', subscription);
 
   }),
-  
+
+
   didInsertElement: function() {
       // Place messages fixed at bottom with remaining height after new message box
       var viewportHeight = Ember.$(window).height();
       var elementOffset = Ember.$('.chat .messages').offset().top;
       var diff = (viewportHeight - elementOffset);
       Ember.$('.chat .messages').height(diff);
-      
+
       // Set width of messages
       var chatWidth = Ember.$('.chat').outerWidth();
-      Ember.$('.chat .messages').outerWidth(chatWidth - 24);
+    Ember.$('.chat .messages').outerWidth(chatWidth - 24);
   },
 
   actions: {
