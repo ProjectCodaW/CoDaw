@@ -45,7 +45,7 @@ export default Ember.Component.extend({
   },
 
   click: function() {
-    CD.play();
+    // CD.play();
   },
   
   /*MARK: NON-EMBER FUNCTIONS*/
