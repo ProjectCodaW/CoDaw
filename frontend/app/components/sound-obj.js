@@ -34,9 +34,7 @@ export default Ember.Component.extend({
         $('#'+ me.id).removeClass('animated bounceInRight');
       });
       console.log('px per tick: '+ CD.view.pxPerTick + ' width: ' + CD.view.getWavesurferWidth(me.wavesurfer));
-      me.$().css({
-        width: CD.view.getWavesurferWidth(me.wavesurfer)
-      });
+      me.setWidth(CD.view.getWavesurferWidth(me.wavesurfer));
 
       me.wavesurfer.un('ready');
     });
@@ -57,8 +55,11 @@ export default Ember.Component.extend({
 
   /*MARK: NON-EMBER FUNCTIONS*/
   setWidth: function(pixels) {
-    Ember.$().css({width:pixels});
-    this.wavesurfer.drawBuffer();
+    this.$().css({width:pixels});
+    //this.wavesurfer.drawBuffer();
+
+    this.wavesurfer.empty();
+    this.wavesurfer.load(this.fname);
   },
 
   /*MARK: ACTIONS*/
