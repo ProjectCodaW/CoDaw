@@ -35,7 +35,6 @@ export default Ember.Component.extend({
       });
       console.log('px per tick: '+ CD.view.pxPerTick + ' width: ' + CD.view.getWavesurferWidth(me.wavesurfer));
       me.setWidth(CD.view.getWavesurferWidth(me.wavesurfer));
-
       me.wavesurfer.un('ready');
     });
 
