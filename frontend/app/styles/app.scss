@@ -29,6 +29,12 @@ $warn:'orange';
     z-index:1;
     position: fixed;
     width:76.38888861%;
+    
+    button {
+        position: relative;
+        top: 50%;
+        transform: translateY(-50%);
+    }
 }
 
 .tracks {
