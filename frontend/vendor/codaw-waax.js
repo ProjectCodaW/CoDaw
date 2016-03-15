@@ -249,7 +249,7 @@ CD.view.scrollToLink = function(text) {
   console.log(t);
   console.log(px);
 
-  $('*').animate({scrollLeft:px}, 800);
+  $('#ember505').animate({scrollLeft:px}, 800);
 }
 
 CD.view.makeTimeLink = function(text) {
