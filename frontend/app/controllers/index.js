@@ -6,8 +6,8 @@ export default Ember.Controller.extend({
           CD.play();
       },
       stopTracks: function() {
-          CD.seek(0);
           CD.pause();
+          CD.seek(0);
           for (var i = 0; i < CD.sounds.length; i++) {
               CD.sounds[i].node.seekTo(0);
           }

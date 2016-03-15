@@ -93,7 +93,6 @@ CD.removeSound = function(idx) {
 CD.fillImmediate = function(t) {
   for(i = 0; i < CD.sounds.length; i++) {
     if(t<=CD.sounds[i].time && CD.sounds[i].time < (t+CD.lookaheadTime)){
-      console.log("found something");
       CD.immediate.push(CD.sounds[i]);
     }
   }
