@@ -41,5 +41,27 @@ WaveSurfer.WebAudio.state.playing = {
   }
 };
 
+WaveSurfer.createDrawer = function () {
+  var my = this;
+
+  this.drawer = Object.create(WaveSurfer.Drawer[this.params.renderer]);
+  this.drawer.init(this.container, this.params);
+
+  this.drawer.on('redraw', function () {
+    my.drawBuffer();
+    my.drawer.progress(my.backend.getPlayedPercents());
+  });
+
+  // Click-to-seek
+  this.drawer.on('click', function (e, progress) {
+
+  });
+
+  // Relay the scroll event from the drawer
+  this.drawer.on('scroll', function (e) {
+    my.fireEvent('scroll', e);
+  });
+}
+
 //a breadcrumb for import stages
 WaveSurfer.overridden = true;
